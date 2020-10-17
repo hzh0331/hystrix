@@ -19,7 +19,7 @@ public class TestService {
         System.out.println("test2 "+input);
     }
 
-    public void fallbackMethod(int input){
-        System.out.println("execute fail, the input is "+input);
+    public void fallbackMethod(int input, Throwable throwable){
+        System.out.println("execute fail, the input is "+input + ", the exception is " + throwable);
     }
 }
