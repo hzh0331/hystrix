@@ -29,6 +29,10 @@ public class TestService {
         System.out.println("test2 "+input);
     }
 
+    /**
+     * configuration with annotation
+     * @param input
+     */
     @HystrixCommand(fallbackMethod = "fallbackMethod",
     commandProperties = {
             @HystrixProperty(name = "circuitBreaker.requestVolumeThreshold", value = "2"),
@@ -40,6 +44,16 @@ public class TestService {
     public void test3(int input){
         System.out.println("test3 output:"+1/input);
     }
+
+    /**
+     * configure by application.properties file
+     * @param input
+     */
+    @HystrixCommand(fallbackMethod = "defaultDoSomething", commandKey = "tt")
+    public void test4(int input){
+        System.out.println("test3 output:"+1/input);
+    }
+
 
     /**
      * fall back method without throwable
