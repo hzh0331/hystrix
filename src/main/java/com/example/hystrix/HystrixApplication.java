@@ -14,10 +14,6 @@ public class HystrixApplication {
     public static void main(String[] args) throws InterruptedException {
         ConfigurableApplicationContext configurableApplicationContext = SpringApplication.run(HystrixApplication.class, args);
         TestService testService = configurableApplicationContext.getBean(TestService.class);
-        for (int i = 0; i < 30; i ++){
-            testService.test1(i < 20 ? 0 : 1);
-            TimeUnit.MILLISECONDS.sleep(300);
-        }
 //        //1
 //        testService.test1(1);
 //        //3
@@ -26,5 +22,16 @@ public class HystrixApplication {
 //        testService.test1(2);
 //        //4
 //        testService.test2(1);
+
+
+//        for (int i = 0; i < 30; i ++){
+//            testService.test1(i < 20 ? 0 : 1);
+//            TimeUnit.MILLISECONDS.sleep(300);
+//        }
+
+        for (int i = 0; i < 5; i++){
+            testService.test3(i<3?0:1);
+            TimeUnit.MILLISECONDS.sleep(250);
+        }
     }
 }
