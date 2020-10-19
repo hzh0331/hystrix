@@ -49,9 +49,18 @@ public class TestService {
      * configure by application.properties file
      * @param input
      */
-    @HystrixCommand(fallbackMethod = "defaultDoSomething", commandKey = "tt")
+    @HystrixCommand(fallbackMethod = "fallbackMethod", commandKey = "tt")
     public void test4(int input){
         System.out.println("test3 output:"+1/input);
+    }
+
+    /**
+     * thread pool test
+     * @param input
+     */
+    @HystrixCommand(fallbackMethod = "fallbackMethod")
+    public void test5(int input){
+        System.out.println("thred: "+Thread.currentThread().getName()+" input: "+input+" output"+1/input);
     }
 
 
@@ -68,7 +77,16 @@ public class TestService {
      * @param input
      * @param throwable
      */
+//    public void fallbackMethod(int input, Throwable throwable){
+//        System.out.println("execute fail, the input is "+input + ", the exception is " + throwable);
+//    }
+
+    /**
+     * thread pool fall back method
+     * @param input
+     * @param throwable
+     */
     public void fallbackMethod(int input, Throwable throwable){
-        System.out.println("execute fail, the input is "+input + ", the exception is " + throwable);
+        System.out.println("execute fail, thd is "+ Thread.currentThread().getName() + ",the input is "+input + ", the exception is " + throwable);
     }
 }

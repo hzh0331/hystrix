@@ -6,6 +6,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.circuitbreaker.EnableCircuitBreaker;
 import org.springframework.context.ConfigurableApplicationContext;
 
+import java.util.concurrent.Executor;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 
 @SpringBootApplication
@@ -29,9 +32,23 @@ public class HystrixApplication {
 //            TimeUnit.MILLISECONDS.sleep(300);
 //        }
 
-        for (int i = 0; i < 5; i++){
-            testService.test3(i<3?0:1);
-            TimeUnit.MILLISECONDS.sleep(250);
+//        for (int i = 0; i < 5; i++){
+//            testService.test3(i<3?0:1);
+//            TimeUnit.MILLISECONDS.sleep(250);
+//        }
+
+        ExecutorService executorService = Executors.newFixedThreadPool(20);
+        for (int i = 0; i < 20; i++){
+            int tempI = i;
+            executorService.submit(()->testService.test5(tempI+1));
         }
+        executorService.shutdown();
+        executorService.awaitTermination(10, TimeUnit.SECONDS);
+        System.out.println("---wait 5 sec-");
+        TimeUnit.SECONDS.sleep(5);
+        testService.test5(1);
+        System.out.println("---wait 5 sec-");
+        TimeUnit.SECONDS.sleep(5);
+        testService.test5(1);
     }
 }
