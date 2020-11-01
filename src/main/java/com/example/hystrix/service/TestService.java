@@ -60,9 +60,29 @@ public class TestService {
      */
     @HystrixCommand(fallbackMethod = "fallbackMethod")
     public void test5(int input){
-        System.out.println("thred: "+Thread.currentThread().getName()+" input: "+input+" output"+1/input);
+        System.out.println("thread: "+Thread.currentThread().getName()+" input: "+input+" output"+1/input);
     }
 
+    /**
+     * thread pool test, change property by application.properties file
+     * @param input
+     */
+    @HystrixCommand(fallbackMethod = "fallbackMethod", threadPoolKey = "myThreadPool")
+    public void test6(int input){
+        System.out.println("thread: "+Thread.currentThread().getName()+" input: "+input+" output"+1/input);
+    }
+
+    /**
+     * thread pool test, change property by annotation
+     */
+    @HystrixCommand(fallbackMethod = "fallbackMethod", threadPoolProperties = {
+                    @HystrixProperty(name = "coreSize", value = "3"),
+                    @HystrixProperty(name = "maxQueueSize", value = "-1"),
+            }
+    )
+    public void test7(int input){
+        System.out.println("thread: "+Thread.currentThread().getName()+" input: "+input+" output"+1/input);
+    }
 
     /**
      * fall back method without throwable

@@ -40,15 +40,15 @@ public class HystrixApplication {
         ExecutorService executorService = Executors.newFixedThreadPool(20);
         for (int i = 0; i < 20; i++){
             int tempI = i;
-            executorService.submit(()->testService.test5(tempI+1));
+            executorService.submit(()->testService.test7(tempI+1));
         }
         executorService.shutdown();
         executorService.awaitTermination(10, TimeUnit.SECONDS);
         System.out.println("---wait 5 sec-");
         TimeUnit.SECONDS.sleep(5);
-        testService.test5(1);
+        testService.test7(1);
         System.out.println("---wait 5 sec-");
         TimeUnit.SECONDS.sleep(5);
-        testService.test5(1);
+        testService.test7(1);
     }
 }
