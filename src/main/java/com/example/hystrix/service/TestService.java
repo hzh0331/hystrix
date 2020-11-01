@@ -97,16 +97,16 @@ public class TestService {
      * @param input
      * @param throwable
      */
-//    public void fallbackMethod(int input, Throwable throwable){
-//        System.out.println("execute fail, the input is "+input + ", the exception is " + throwable);
-//    }
+    public void fallbackMethod(int input, Throwable throwable){
+        System.out.println("execute fail, the input is "+input + ", the exception is " + throwable);
+    }
 
     /**
      * thread pool fall back method
      * @param input
      * @param throwable
      */
-    public void fallbackMethod(int input, Throwable throwable){
-        System.out.println("execute fail, thd is "+ Thread.currentThread().getName() + ",the input is "+input + ", the exception is " + throwable);
-    }
+//    public void fallbackMethod(int input, Throwable throwable){
+//        System.out.println("execute fail, thd is "+ Thread.currentThread().getName() + ",the input is "+input + ", the exception is " + throwable);
+//    }
 }

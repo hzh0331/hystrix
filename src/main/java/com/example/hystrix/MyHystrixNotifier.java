@@ -1,4 +1,4 @@
-package com.example.hystrix.service;
+package com.example.hystrix;
 
 import com.netflix.hystrix.HystrixCommandKey;
 import com.netflix.hystrix.HystrixEventType;
